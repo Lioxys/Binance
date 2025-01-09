@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import '../styles/App.css'
 import Header from './Header';
 import Footer from './Footer';
 import Home from './Home';
 import LoginForm from './Login';
-import Wallet from './Wallet';
+import CryptoDetail from './cryptoDetails/cryptoDetail';
 
 function App() {
     const [user, setUser] = useState(null);
@@ -24,17 +24,22 @@ function App() {
 
     return (
         <Router>
-            <Header user={user} onLogout={handleLogout} />
-            <div>
-                <Routes>
-                    <Route path="/login" element={user ? <Navigate to="/" /> : <LoginForm setUser={setUser} />} />
-                    <Route path="/" element={<Home user={user} />} />
-                    {user && <Route path="/wallet" element={<Wallet />} />}
-                </Routes>
-            </div>
-            <Footer />
+          <Header user={user} onLogout={handleLogout} />
+          <div>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              
+              <Route path="/crypto/:symbol" element={<CryptoDetail />} />
+              
+              {!user && (
+                <Route path="/login" element={<LoginForm setUser={setUser} />} />
+              )}
+            </Routes>
+          </div>
+          <Footer />
         </Router>
-    );
+      );
+      
 }
 
 export default App;
