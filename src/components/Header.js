@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -7,7 +6,8 @@ function Header({ user, onLogout }) {
         <header>
             <nav>
                 <ul>
-                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/">Accueil</Link></li>
+                    {user && <li><Link to="/wallet">Portefeuille</Link></li>}
                     {user ? (
                         <li>
                             <button onClick={onLogout}>Déconnexion</button>

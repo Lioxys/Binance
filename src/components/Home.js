@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Home() {
   return (
-    <div>
+    <div className='container'>
       <h1>Accueil de la Plateforme de Trading Crypto</h1>
       <p>Bienvenue sur votre plateforme de trading crypto similaire à Binance. Ici, vous pouvez trader des cryptos, voir des statistiques en temps réel, et participer à des discussions communautaires.</p>
 

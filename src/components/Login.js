@@ -14,6 +14,7 @@ function LoginForm({ setUser }) {
     };
 
     return (
+        <div className='loginform'>
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Identifiant:</label>
@@ -35,6 +36,7 @@ function LoginForm({ setUser }) {
             </div>
             <button type="submit">Connexion</button>
         </form>
+        </div>
     );
 }
 
