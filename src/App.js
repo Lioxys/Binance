@@ -1,23 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Formulaire from './Components/Formulaire';
+import ListePost from './Components/ListePost';
 
 function App() {
+  const [posts, setPost] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Formulaire posts={posts} setPost={setPost} />
+      <ListePost posts={posts} setPost={setPost} />
     </div>
   );
 }
