@@ -6,6 +6,8 @@ import Footer from './Footer';
 import Home from './Home';
 import LoginForm from './Login';
 import CryptoDetail from './cryptoDetails/cryptoDetail';
+import Wallet from './Wallet';
+import ListePost from './ListePost';
 
 function App() {
     const [user, setUser] = useState(null);
@@ -30,7 +32,8 @@ function App() {
               <Route path="/" element={<Home />} />
               
               <Route path="/crypto/:symbol" element={<CryptoDetail />} />
-              
+              <Route path="/wallet" element={<Wallet />} />
+              <Route path="/discussions" element={<ListePost />} />
               {!user && (
                 <Route path="/login" element={<LoginForm setUser={setUser} />} />
               )}
