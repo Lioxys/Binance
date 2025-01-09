@@ -5,6 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Home from './Home';
 import LoginForm from './Login';
+import Wallet from './Wallet';
 
 function App() {
     const [user, setUser] = useState(null);
@@ -28,6 +29,7 @@ function App() {
                 <Routes>
                     <Route path="/login" element={user ? <Navigate to="/" /> : <LoginForm setUser={setUser} />} />
                     <Route path="/" element={<Home user={user} />} />
+                    {user && <Route path="/wallet" element={<Wallet />} />}
                 </Routes>
             </div>
             <Footer />

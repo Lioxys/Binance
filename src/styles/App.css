@@ -72,12 +72,14 @@ h1,p {
   padding: 20px;
 }
 
+/* Home Page CSS */
 .container {
   max-width: 1200px;
   margin: 100px auto;
   padding: 20px;
 }
 
+/* Login Page CSS */
 .loginform {
   max-width: 400px;
   min-height: 125px;
