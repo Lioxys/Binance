@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import '../styles/App.css'
-import Header from './Header';  // Importation depuis le même dossier
+import Header from './Header';
 import Footer from './Footer';
-import Home from './Home';  // Importation de Home.js
+import Home from './Home';
 import LoginForm from './Login';
 
 function App() {
@@ -25,16 +25,10 @@ function App() {
         <Router>
             <Header user={user} onLogout={handleLogout} />
             <div>
-                {user ? (
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                    </Routes>
-                ) : (
-                    <Routes>
-                        <Route path="/login" element={<LoginForm setUser={setUser} />} />
-                        <Route path="/" element={<Home />} />
-                    </Routes>
-                )}
+                <Routes>
+                    <Route path="/login" element={user ? <Navigate to="/" /> : <LoginForm setUser={setUser} />} />
+                    <Route path="/" element={<Home user={user} />} />
+                </Routes>
             </div>
             <Footer />
         </Router>

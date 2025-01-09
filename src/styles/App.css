@@ -10,7 +10,7 @@ body {
 header, footer {
   background-color: #0056b3;
   color: white;
-  padding: 15px 20px;
+  padding: 10px 15px;
   text-align: center;
 }
 
@@ -70,6 +70,30 @@ section {
 
 h1,p {
   padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 20px;
+}
+
+.loginform {
+  max-width: 400px;
+  min-height: 125px;
+  margin: 175px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+}
+
+.loginform input[type="text"], .loginform input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
