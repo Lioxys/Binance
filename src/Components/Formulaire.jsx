@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/Formulaire.css'
 
 const Formulaire = ({ posts, setPost, postToEdit, setPostToEdit }) => {
   const [titre, setTitre] = useState('');
@@ -45,22 +46,25 @@ const Formulaire = ({ posts, setPost, postToEdit, setPostToEdit }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <div>
-          <label>Titre:</label>
-          <input type="text" value={titre} onChange={(e) => setTitre(e.target.value)} />
-        </div>
-        <div>
-          <label>Contenue :</label>
-          <textarea value={contenue} onChange={(e) => setContenue(e.target.value)} />
-        </div>
-        <div>
-          <label>Date :</label>
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-        </div>
-        <button type="submit">{postToEdit ? 'Mettre à jour' : 'Ajouter'}</button>
-      </form>
+    <div className="formulaire-container">
+      <div className="formulaire">
+        <h2>{postToEdit ? 'Modifier le Post' : 'Ajouter un Post'}</h2>
+        <form onSubmit={onSubmit}>
+          <div>
+            <label>Titre:</label>
+            <input type="text" value={titre} onChange={(e) => setTitre(e.target.value)} />
+          </div>
+          <div>
+            <label>Contenu :</label>
+            <textarea value={contenue} onChange={(e) => setContenue(e.target.value)} />
+          </div>
+          <div>
+            <label>Date :</label>
+            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+          </div>
+          <button type="submit">{postToEdit ? 'Mettre à jour' : 'Ajouter'}</button>
+        </form>
+      </div>
     </div>
   );
 };

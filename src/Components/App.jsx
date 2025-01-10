@@ -7,10 +7,12 @@ import Home from './Home';
 import LoginForm from './Login';
 import CryptoDetail from './cryptoDetails/cryptoDetail';
 import Wallet from './Wallet';
+import Formulaire from './Formulaire';
 import ListePost from './ListePost';
 
 function App() {
     const [user, setUser] = useState(null);
+    const [posts, setPost] = useState([]);
 
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
@@ -33,7 +35,8 @@ function App() {
               
               <Route path="/crypto/:symbol" element={<CryptoDetail />} />
               <Route path="/wallet" element={<Wallet />} />
-              <Route path="/discussions" element={<ListePost />} />
+              <Route path="/formulaire" element={<Formulaire posts={posts} setPost={setPost} />} />
+              <Route path="/discussions" element={<ListePost posts={posts} setPost={setPost}/>} />
               {!user && (
                 <Route path="/login" element={<LoginForm setUser={setUser} />} />
               )}

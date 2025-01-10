@@ -10,7 +10,14 @@ function Wallet() {
         transactions: [],
         iban: '',
         totalValue: 0,
-        transactionAmount: ''  // Gérer le montant de la transaction
+        transactionAmount: '',  // Gérer le montant de la transaction
+        users: [
+            { id: 1, name: 'Utilisateur 1', iban: 'FR123456789' },
+            { id: 2, name: 'Utilisateur 2', iban: 'FR987654321' }
+        ],
+        selectedUser: null,
+        selectedCrypto: 'BTC',
+        transferAmount: ''  // Montant à transférer
     });
 
     useEffect(() => {
@@ -25,7 +32,7 @@ function Wallet() {
 
     const updatePrices = (prices) => {
         setWallet(prevWallet => {
-            const updatedCurrencies = {...prevWallet.currencies};
+            const updatedCurrencies = { ...prevWallet.currencies };
             let newTotalValue = 0;
             Object.entries(updatedCurrencies).forEach(([key, value]) => {
                 if (prices[key]) {
@@ -57,6 +64,50 @@ function Wallet() {
         }));
     };
 
+    const handleTransfer = () => {
+        const { selectedUser, selectedCrypto, transferAmount } = wallet;
+
+        // Validation : vérifier si l'utilisateur possède assez de tokens
+        if (!selectedUser) {
+            alert('Destinataire non trouvé');
+            return;
+        }
+
+        const cryptoAmount = wallet.currencies[selectedCrypto].amount;
+        if (parseFloat(transferAmount) > cryptoAmount) {
+            alert('Montant insuffisant de tokens');
+            return;
+        }
+
+        // Si toutes les validations passent, procéder au virement
+        const transaction = {
+            type: 'virement',
+            amount: parseFloat(transferAmount),
+            iban: selectedUser.iban,
+            date: new Date().toLocaleDateString('fr-FR'),
+            to: selectedUser.name
+        };
+
+        setWallet(prevWallet => {
+            const updatedCurrencies = { ...prevWallet.currencies };
+            updatedCurrencies[selectedCrypto].amount -= parseFloat(transferAmount);  // Déduire les tokens envoyés
+
+            // Recalculer la valeur totale du portefeuille après le virement
+            let newTotalValue = 0;
+            Object.entries(updatedCurrencies).forEach(([key, value]) => {
+                newTotalValue += value.amount * value.currentPrice;
+            });
+
+            return {
+                ...prevWallet,
+                currencies: updatedCurrencies,
+                transactions: [...prevWallet.transactions, transaction],
+                totalValue: newTotalValue,  // Mise à jour de la valeur totale
+                transferAmount: ''  // Réinitialiser le montant après virement
+            };
+        });
+    };
+
     return (
         <div className="wallet-container">
             <h2 className="wallet-header">Mon Portefeuille</h2>
@@ -72,18 +123,52 @@ function Wallet() {
                     <p key={index}>{tx.type} de {tx.amount}€ le {tx.date} via IBAN {tx.iban}</p>
                 ))}
             </div>
+
             <div className="wallet-section">
                 <h3>Crypto-Monnaies</h3>
                 <ul className="crypto-list">
                     {Object.entries(wallet.currencies).map(([key, value]) => (
                         <li className="crypto-item" key={key}>
-                            <span className="crypto-details">{key}: {value.amount} units @ ${value.currentPrice} each</span>
-                            <span className="total-value">(Total: ${(value.amount * value.currentPrice).toFixed(2)})</span>
+                            <span className="crypto-details">{key}: {value.amount} unités @ {value.currentPrice}€ chacune</span>
+                            <span className="total-value">(Total: {(value.amount * value.currentPrice).toFixed(2)}€)</span>
                         </li>
                     ))}
                 </ul>
             </div>
-            <p className="total-value">Valeur totale du Portefeuille: ${wallet.totalValue?.toFixed(2)}</p>
+
+            <div className="wallet-section">
+                <h3>Virement Interne</h3>
+                <div className="transaction-inputs">
+                    <select 
+                        value={wallet.selectedUser?.id || ''} 
+                        onChange={e => {
+                            const selectedUser = wallet.users.find(user => user.id === parseInt(e.target.value));
+                            setWallet({ ...wallet, selectedUser });
+                        }}
+                    >
+                        <option value="">Sélectionner un destinataire</option>
+                        {wallet.users.map(user => (
+                            <option key={user.id} value={user.id}>{user.name}</option>
+                        ))}
+                    </select>
+                    <select 
+                        value={wallet.selectedCrypto} 
+                        onChange={e => setWallet({ ...wallet, selectedCrypto: e.target.value })}
+                    >
+                        <option value="BTC">BTC</option>
+                        <option value="ETH">ETH</option>
+                    </select>
+                    <input 
+                        type="number" 
+                        value={wallet.transferAmount} 
+                        onChange={e => setWallet({ ...wallet, transferAmount: e.target.value })}
+                        placeholder="Montant à transférer"
+                    />
+                    <button className="transaction-button" onClick={handleTransfer}>Envoyer</button>
+                </div>
+            </div>
+
+            <p className="total-value">Valeur totale du Portefeuille: {wallet.totalValue?.toFixed(2)}€</p>
         </div>
     );
 }
