@@ -4,58 +4,33 @@ import { Link } from 'react-router-dom';
 function Home() {
   return (
     <div className='container'>
-      <h1>Accueil de la Plateforme de Trading Crypto</h1>
-      <p>Bienvenue sur votre plateforme de trading crypto similaire à Binance. Ici, vous pouvez trader des cryptos, voir des statistiques en temps réel, et participer à des discussions communautaires.</p>
+      <h1>Plateforme de Trading Crypto</h1>
+      <p>Bienvenue sur votre plateforme de trading crypto. Ici, vous pouvez trader des cryptos, voir des statistiques en temps réel, et participer à des discussions communautaires.</p>
 
-
-      <section>
+      <section className='section'>
         <h2>Crypto-Monnaies Populaires</h2>
-        <ul>
-          <li>
-          Bitcoin (BTC)
-          <Link to="/crypto/bitcoin">Voir Détails</Link>
-          </li>
-          <li>
-          Ethereum (ETH)
-          <Link to="/crypto/ethereum">Voir Détails</Link>
-          </li>
-          <li>
-            Dogecoin (DOGE)
-            <Link to="/crypto/doge">Voir Détails</Link>
-          </li>
-          <li>
-            Tether (USDT)
-            <Link to="/crypto/usdt">Voir Détails</Link>
-          </li>
-          <li>
-            Ripple (XRP) 
-            <Link to="/crypto/xrp">Voir Détails</Link>
-          </li>
-          <li>
-            Solana (SOL)
-            <Link to="/crypto/sol">Voir Détails</Link>
-          </li>
-          <li>
-            Cardano (ADA)
-            <Link to="/crypto/ada">Voir Détails</Link>
-          </li>
-          <li>
-            Avalanche (AVAX)
-            <Link to="/crypto/avax">Voir Détails</Link>
-          </li>
-        </ul>
+        <div className="crypto-list">
+          <div className="crypto-item"><span>Bitcoin (BTC) -</span> <Link to="/crypto/bitcoin" className="button">Voir Détails</Link></div>
+          <div className="crypto-item"><span>Ethereum (ETH) -</span> <Link to="/crypto/ethereum" className="button">Voir Détails</Link></div>
+          <div className="crypto-item"><span>Dogecoin (DOGE) -</span> <Link to="/crypto/doge" className="button">Voir Détails</Link></div>
+          <div className="crypto-item"><span>Tether (USDT) -</span> <Link to="/crypto/usdt" className="button">Voir Détails</Link></div>
+          <div className="crypto-item"><span>Ripple (XRP) -</span> <Link to="/crypto/xrp" className="button">Voir Détails</Link></div>
+          <div className="crypto-item"><span>Solana (SOL) -</span> <Link to="/crypto/sol" className="button">Voir Détails</Link></div>
+          <div className="crypto-item"><span>Cardano (ADA) -</span> <Link to="/crypto/ada" className="button">Voir Détails</Link></div>
+          <div className="crypto-item"><span>Avalanche (AVAX) -</span> <Link to="/crypto/avax" className="button">Voir Détails</Link></div>
+        </div>
       </section>
 
-      <section>
+      <section className='section'>
         <h2>Trading Rapide</h2>
         <p>Placez des ordres de marché rapidement pour vos crypto-monnaies préférées.</p>
-        <Link to="/trade">Accéder au Trading</Link>
+        <Link to="/trade" className="button">Accéder au Trading</Link>
       </section>
 
-      <section>
+      <section className='section'>
         <h2>Discussions Communautaires</h2>
         <p>Participez à des discussions sur vos crypto-monnaies préférées et partagez votre opinion.</p>
-        <Link to="/discussions">Voir Discussions</Link>
+        <Link to="/discussions" className="button">Voir Discussions</Link>
       </section>
     </div>
   );

@@ -1,96 +1,107 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #FFFFFF;
-  background-color: #0B0B0B;
+  background-color:  #323232;
   line-height: 1.6;
   padding-bottom: 60px;
+  margin: 0;
+  height: 100vh;
+  overflow: auto;
 }
 
 header, footer {
-  background-color: #1A1A1A;
+  background-color: #242424;
   color: white;
-  padding: 10px 15px;
-  text-align: center;
+  padding: 10px 20px;
 }
 
 header {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 50px;
-  background-color: #1A1A1A;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 1000;
 }
 
 footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 50px;
-  background-color: #1A1A1A;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 nav ul {
   list-style-type: none;
   padding: 0;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin: 0;
 }
 
 nav ul li {
-  display: inline;
-  margin-right: 20px;
+  margin: 0 10px;
 }
 
-nav a {
+nav a, .button {
   color: white;
+  background-color: transparent;
   text-decoration: none;
-  font-size: 16px;
-}
-
-button, a.button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
   padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+button, .button {
   border-radius: 12px;
+  padding: 10px 20px;
+  
 }
 
-button:hover, a.button:hover {
-  background-color: #45a049;
+button:hover, .button:hover, nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #4CAF50;
 }
 
-section {
-  margin: 20px 0;
-  padding: 20px;
-  background-color: #1A1A1A;
-  border-radius: 8px;
-}
-
-h1,p {
-  padding: 20px;
-}
-
-/* Home Page CSS */
 .container {
   max-width: 1200px;
-  margin: 100px auto;
-  padding: 20px;
+  margin: 250px auto;
+  padding: 30px;
 }
+
+.section {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1, h2, p {
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #8884d8;
+}
+
+@media (max-width: 768px) {
+  .container, .section {
+    margin: 80px 10px 0 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav ul li {
+    margin: 5px 0;
+  }
+}
+
 
 /* Login Page CSS */
 .loginform {
@@ -98,7 +109,7 @@ h1,p {
   min-height: 125px;
   margin: 175px auto;
   padding: 20px;
-  background: white;
+  background-color: white-smoke;
   border-radius: 8px;
 }
 
@@ -111,10 +122,4 @@ h1,p {
   box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-  nav ul li {
-    display: block;
-    margin: 10px 0;
-  }
-}
 
