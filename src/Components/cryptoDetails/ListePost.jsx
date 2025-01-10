@@ -1,6 +1,7 @@
 import Formulaire from "./Formulaire";
 import { useState } from "react";
-import TriPost from "../TriPost";
+import TriPost from "./TriPost";
+import '../../styles/ListPost.css';
 
 const ListePost = ({ posts, setPost }) => {
   const [postToEdit, setPostToEdit] = useState(null);
@@ -42,27 +43,24 @@ const ListePost = ({ posts, setPost }) => {
     <div>
       <h2>Liste des Posts</h2>
 
-      <TriPost setSortBy={setSortBy} />
+      <TriPost className="tri-post" setSortBy={setSortBy} />
 
-      <ul>
-        {sortedPosts.length > 0 ? (
-          sortedPosts.map((post) => (
-            <li key={post.id}>
-              Titre : {post.titre} <br />
-              Contenue : {post.contenue} <br />
-              Date : {post.date} <br />
-              <strong>Likes :</strong> {post.likes || 0} <br />
-              <button onClick={() => modifierPosts(post)}>Modifier</button>
-              <button onClick={() => supprimerPosts(post.id)}>Supprimer</button>
-              <button onClick={() => likerPost(post.id)}>Like</button>
-            </li>
-          ))
-        ) : (
-          <p>Aucun post</p>
-        )}
-      </ul>
-
-      {postToEdit && <Formulaire posts={posts} setPost={setPost} postToEdit={postToEdit} setPostToEdit={setPostToEdit} />}
+      <ul className="post-list">
+        {sortedPosts.length > 0 ? ( sortedPosts.map((post) => (
+        <li key={post.id} className="post-item">
+            <h3 className="post-title">Titre : {post.titre}</h3>
+            <p className="post-content">Contenue : {post.contenue}</p>
+            <p className="post-date">Date : {post.date}</p>
+            <strong className="post-likes">Likes : </strong> {post.likes || 0}
+        <div className="post-buttons">
+            <button className="modify-btn" onClick={() => modifierPosts(post)}>Modifier</button>
+            <button className="delete-btn" onClick={() => supprimerPosts(post.id)}>Supprimer</button>
+            <button className="like-btn" onClick={() => likerPost(post.id)}>Like</button>
+        </div>
+        </li>
+    ))) : (<p className="no-post">Aucun post</p>)}
+    </ul>
+    {postToEdit && <Formulaire posts={posts} setPost={setPost} postToEdit={postToEdit} setPostToEdit={setPostToEdit} />}
     </div>
   );
 };

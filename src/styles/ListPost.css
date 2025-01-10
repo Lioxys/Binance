@@ -1,0 +1,57 @@
+/* Liste post */
+.post-list {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-item {
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 800px;
+    text-align: left;
+}
+
+/* Trier post */
+.tri-post {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tri-label {
+    font-size: 1em;
+    margin-right: 10px;
+    color: #333;
+}
+
+.tri-select {
+    padding: 8px 12px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.tri-select:hover {
+    border-color: #2196F3;
+}
+
+.tri-select:focus {
+    outline: none;
+    border-color: #1976D2;
+}
+
+h2{
+  text-align: center;
+}
+
