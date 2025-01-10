@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { fetchCryptoById, fetchCryptoHistory } from '../services/api'; 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import Orders from './Orders';
+import Formulaire from './Formulaire';
+import ListePost from './ListePost';
 
 const symbolToId = {
     bitcoin: 'bitcoin',
@@ -21,6 +23,9 @@ function CryptoDetail() {
   const [historyData, setHistoryData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [posts, setPost] = useState([]);
+  const [postToEdit, setPostToEdit] = useState(null);
 
   useEffect(() => {
     const cryptoId = symbolToId[symbol.toLowerCase()];
@@ -98,6 +103,13 @@ function CryptoDetail() {
         cryptoName={cryptoData.name} 
         symbol={cryptoData.symbol.toUpperCase()} 
     />
+    <Formulaire 
+        posts={posts} 
+        setPost={setPost} 
+        postToEdit={postToEdit} 
+        setPostToEdit={setPostToEdit} 
+      />
+    <ListePost posts={posts} setPost={setPost}/>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/Formulaire.css'
+import '../../styles/Formulaire.css'
 
 const Formulaire = ({ posts, setPost, postToEdit, setPostToEdit }) => {
   const [titre, setTitre] = useState('');
