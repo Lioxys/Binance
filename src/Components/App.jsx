@@ -7,8 +7,8 @@ import Home from './Home';
 import LoginForm from './Login';
 import CryptoDetail from './cryptoDetails/cryptoDetail';
 import Wallet from './Wallet';
-import Formulaire from './Formulaire';
-import ListePost from './ListePost';
+import Formulaire from './cryptoDetails/Formulaire';
+import ListePost from './cryptoDetails/ListePost';
 
 function App() {
     const [user, setUser] = useState(null);

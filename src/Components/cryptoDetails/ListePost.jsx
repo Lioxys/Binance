@@ -1,6 +1,6 @@
 import Formulaire from "./Formulaire";
 import { useState } from "react";
-import TriPost from "./TriPost";
+import TriPost from "../TriPost";
 
 const ListePost = ({ posts, setPost }) => {
   const [postToEdit, setPostToEdit] = useState(null);

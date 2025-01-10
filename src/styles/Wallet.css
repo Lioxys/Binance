@@ -3,7 +3,7 @@
     max-width: 800px;
     margin: 100px auto;
     padding: 20px;
-    background-color: #f7f7f7;
+    background-color: #1A1A1A;
     overflow: auto;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .wallet-section {
-    background: white;
+    background: burlywood;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     padding: 20px;
